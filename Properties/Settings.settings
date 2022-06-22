@@ -1,0 +1,51 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="phd_project_net_framework.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="triggerSlope" Type="NationalInstruments.DAQmx.AnalogEdgeStartTriggerSlope" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="sensitivityUnits" Type="NationalInstruments.DAQmx.AIAccelerometerSensitivityUnits" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="terminalConfiguration" Type="NationalInstruments.DAQmx.AITerminalConfiguration" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="excitationSource" Type="NationalInstruments.DAQmx.AIExcitationSource" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="inputCoupling" Type="NationalInstruments.DAQmx.AICoupling" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="physicalChannel" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Rate" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="MinVal" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-10</Value>
+    </Setting>
+    <Setting Name="MaxVal" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="Sensitivity" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Samples" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="triggerSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">APFI0</Value>
+    </Setting>
+    <Setting Name="triggerLevel" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Hysteresis" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="excitationValue" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.004</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
