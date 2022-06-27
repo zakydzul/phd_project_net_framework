@@ -142,22 +142,22 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chid_form\Job_Form.cs">
+    <Compile Include="Child_form\Job_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Chid_form\Job_Form.Designer.cs">
+    <Compile Include="Child_form\Job_Form.Designer.cs">
       <DependentUpon>Job_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Chid_form\Monitoring_Form.cs">
+    <Compile Include="Child_form\Monitoring_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Chid_form\Monitoring_Form.Designer.cs">
+    <Compile Include="Child_form\Monitoring_Form.Designer.cs">
       <DependentUpon>Monitoring_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Chid_form\Waveform_form.cs">
+    <Compile Include="Child_form\Waveform_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Chid_form\Waveform_form.Designer.cs">
+    <Compile Include="Child_form\Waveform_form.Designer.cs">
       <DependentUpon>Waveform_form.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom_Controls\FormRoundedCorners.cs">
@@ -177,13 +177,13 @@
     <Compile Include="Custom_Controls\ButtonRoundedCorners.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="Chid_form\Job_Form.resx">
+    <EmbeddedResource Include="Child_form\Job_Form.resx">
       <DependentUpon>Job_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Chid_form\Monitoring_Form.resx">
+    <EmbeddedResource Include="Child_form\Monitoring_Form.resx">
       <DependentUpon>Monitoring_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Chid_form\Waveform_form.resx">
+    <EmbeddedResource Include="Child_form\Waveform_form.resx">
       <DependentUpon>Waveform_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
