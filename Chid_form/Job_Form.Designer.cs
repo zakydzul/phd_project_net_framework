@@ -51,7 +51,7 @@
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(19, 3);
+            this.iconButton1.Location = new System.Drawing.Point(11, 11);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(220, 222);
             this.iconButton1.TabIndex = 0;
@@ -61,6 +61,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(895, 594);
             this.Controls.Add(this.panelRoundedCorners1);
             this.Name = "Job_Form";

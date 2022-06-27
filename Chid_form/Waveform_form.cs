@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using NationalInstruments;
 using NationalInstruments.DAQmx;
 
+using ScottPlot.Plottable;
+    
 namespace phd_project_net_framework.Chid_form
 {
     public partial class Waveform_form : Form
@@ -27,7 +29,11 @@ namespace phd_project_net_framework.Chid_form
         private AnalogWaveform<double>[] data;
         private DataColumn[] dataColumn = null;
         private DataTable dataTable = null;
-        
+
+        SignalPlot signalPlot;
+
+        double[] liveData = new double[100_000];
+
         private BindingSource bs_table = new BindingSource();
         public Waveform_form()
         {
@@ -48,6 +54,29 @@ namespace phd_project_net_framework.Chid_form
             {
                 comboBoxPhysicalChannel.SelectedIndex = 0;
             }
+            
+            signalPlot = formsPlot1.Plot.AddSignal(liveData);
+            signalPlot.FillAboveAndBelow(Color.Green, Color.Transparent, Color.Transparent, Color.Red, alpha: 1);
+            signalPlot.Color = Color.White;
+            formsPlot1.Plot.AxisAutoX(margin: 0);
+            formsPlot1.Plot.SetAxisLimits(yMin: -10, yMax: 10);
+            formsPlot1.Plot.SetAxisLimits(xMin: 0, xMax: Convert.ToInt32(numUpDownSamples.Value));            
+
+            //plot a red vertical line and save it so we can move it later
+
+            //formsPlot1.Plot.Style(figureBackground: Color.Transparent, dataBackground: Color.Transparent);
+            formsPlot1.Plot.Title("Plot Demo", true, Color.White, 20);
+            formsPlot1.Plot.Style(ScottPlot.Style.Gray1);
+            formsPlot1.Plot.Palette = ScottPlot.Drawing.Palette.Nord;
+            formsPlot1.Plot.YAxis.TickMarkColor(Color.White);
+            formsPlot1.Plot.YAxis.TickLabelStyle(color: Color.White);
+            formsPlot1.BackColor = Color.Transparent;
+            formsPlot1.Refresh();
+
+            this.FormClosed += (sender, args) =>
+            {
+                timerRender?.Stop();
+            };
         }
 
         
@@ -66,11 +95,15 @@ namespace phd_project_net_framework.Chid_form
             {
                 try
                 {
+                    timerRender.Enabled = true;
+                    timerRender.Start();
                     buttonStop.Enabled = true;
                     buttonStart.Enabled = false;
-                    
+                    //double[] liveData = new double[Convert.ToInt32(numUpDownSamples.Value)];
+                    //signalPlot.MaxRenderIndex = Convert.ToInt32(numUpDownSamples.Value);
+
                     // Get slope value
-                    switch(comboBoxTriggerSlope.SelectedItem.ToString())
+                    switch (comboBoxTriggerSlope.SelectedItem.ToString())
                     {
                         case "Rising":
                             triggerSlope = AnalogEdgeStartTriggerSlope.Rising;
@@ -160,18 +193,17 @@ namespace phd_project_net_framework.Chid_form
                         SampleClockActiveEdge.Rising, SampleQuantityMode.ContinuousSamples, 1000);
 
                     //configure the Analog trigger
-                    myTask.Triggers.StartTrigger.ConfigureAnalogEdgeTrigger(textBoxTriggerSource.Text, triggerSlope,
+                    /*myTask.Triggers.StartTrigger.ConfigureAnalogEdgeTrigger(textBoxTriggerSource.Text, triggerSlope,
                         Convert.ToDouble(numUpDownTiggerLevel.Value));
 
                     myTask.Triggers.StartTrigger.AnalogEdge.Hysteresis = Convert.ToDouble(numUpDownHysteresis.Value);
-
+*/
                     //verify the task
                     myTask.Control(TaskAction.Verify);
 
                     //prepare the table for data
                     InitializeDataTable(myTask.AIChannels, ref dataTable);
-                    //chart1.DataSource = bs_table;
-                    //chart1.Series["Series1"].XValueMember = "0";
+                    //acquisitionDataGrid.DataSource = dataTable;
 
                     runningTask = myTask;
                     analogInReader = new AnalogMultiChannelReader(myTask.Stream);
@@ -204,6 +236,7 @@ namespace phd_project_net_framework.Chid_form
             myTask.Dispose();
             buttonStop.Enabled = false;
             buttonStart.Enabled = true;
+            timerRender.Stop();
         }
         
         
@@ -220,8 +253,8 @@ namespace phd_project_net_framework.Chid_form
                     // Plot your data here
                     dataToDataTable(data, ref dataTable);
 
-                    // Check for and report any overloaded channels
-                    /*if (overloadDetectionCheckBox.Checked)
+                    /*// Check for and report any overloaded channels
+                    *//*if (overloadDetectionCheckBox.Checked)
                         ReportOverloadedChannels();*/
 
                     analogInReader.BeginMemoryOptimizedReadWaveform(Convert.ToInt32(numUpDownSamples.Value),
@@ -259,10 +292,12 @@ namespace phd_project_net_framework.Chid_form
             {
                 for (int sample = 0; sample < waveform.Samples.Count; ++sample)
                 {
-                    if (sample == 10)
+                    if (sample == Convert.ToInt32(numUpDownSamples.Value))
                         break;
-
-                    dataTable.Rows[sample][currentLineIndex] = waveform.Samples[sample].Value;
+                    //dataTable.Rows[sample][currentLineIndex] = waveform.Samples[sample].Value;
+                    Array.Copy(liveData, 0, liveData, 1, liveData.Length - 1);
+                    
+                    liveData[0] = waveform.Samples[sample].Value;
                 }
                 currentLineIndex++;
             }
@@ -274,7 +309,7 @@ namespace phd_project_net_framework.Chid_form
             data.Rows.Clear();
             data.Columns.Clear();
             dataColumn = new DataColumn[numOfChannels];
-            int numOfRows = 10;
+            int numOfRows = 100;
 
             for (int currentChannelIndex = 0; currentChannelIndex < numOfChannels; currentChannelIndex++)
             {
@@ -315,6 +350,35 @@ namespace phd_project_net_framework.Chid_form
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveSettings();
+        }
+
+        private void timerRender_Tick(object sender, EventArgs e)
+        {
+            formsPlot1.Refresh();
+        }
+
+        private void SamplesValueChanged(object sender, EventArgs e)
+        {
+            formsPlot1.Plot.SetAxisLimits(xMin: 0,xMax: Convert.ToInt32(numUpDownSamples.Value));            
+        }
+
+        private void YaxisLock_CheckedChanged(object sender, EventArgs e)
+        {
+            formsPlot1.Configuration.LockVerticalAxis = YaxisLock.Checked;
+            formsPlot1.Plot.SetAxisLimits(yMin: Convert.ToInt32(numYMinimum.Value), yMax: Convert.ToInt32(numYMaximum.Value));
+            formsPlot1.Refresh();
+        }
+
+        private void numYMaximum_ValueChanged(object sender, EventArgs e)
+        {
+            formsPlot1.Plot.SetAxisLimits(yMax: Convert.ToInt32(numYMaximum.Value));
+            formsPlot1.Refresh();
+        }
+
+        private void numYMinimum_ValueChanged(object sender, EventArgs e)
+        {
+            formsPlot1.Plot.SetAxisLimits(yMin: Convert.ToInt32(numYMinimum.Value));
+            formsPlot1.Refresh();
         }
     }
 }

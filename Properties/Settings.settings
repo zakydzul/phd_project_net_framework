@@ -30,7 +30,7 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="Sensitivity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">10.64</Value>
     </Setting>
     <Setting Name="Samples" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1000</Value>
@@ -45,7 +45,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="excitationValue" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.004</Value>
+      <Value Profile="(Default)">0.002</Value>
     </Setting>
   </Settings>
 </SettingsFile>

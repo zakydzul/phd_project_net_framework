@@ -35,6 +35,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
@@ -76,6 +77,13 @@
             this.labelMinimumValue = new System.Windows.Forms.Label();
             this.labelPhysicalChannel = new System.Windows.Forms.Label();
             this.formsPlot1 = new ScottPlot.FormsPlot();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.numYMinimum = new System.Windows.Forms.NumericUpDown();
+            this.YMinimumLabel = new System.Windows.Forms.Label();
+            this.numYMaximum = new System.Windows.Forms.NumericUpDown();
+            this.YMaximumLabel = new System.Windows.Forms.Label();
+            this.timerRender = new System.Windows.Forms.Timer(this.components);
+            this.YaxisLock = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBoxDeviceParameters.SuspendLayout();
@@ -91,6 +99,9 @@
             this.groupBoxChannelParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownMaximumValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownMinimumValue)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numYMinimum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numYMaximum)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -100,12 +111,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.formsPlot1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(968, 671);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -130,7 +142,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(21, 634);
+            this.btnSave.Location = new System.Drawing.Point(18, 639);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 23);
             this.btnSave.TabIndex = 7;
@@ -144,7 +156,7 @@
             this.buttonStop.FlatAppearance.BorderSize = 0;
             this.buttonStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStop.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonStop.Location = new System.Drawing.Point(134, 605);
+            this.buttonStop.Location = new System.Drawing.Point(133, 610);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(113, 23);
             this.buttonStop.TabIndex = 6;
@@ -158,7 +170,7 @@
             this.buttonStart.FlatAppearance.BorderSize = 0;
             this.buttonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStart.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonStart.Location = new System.Drawing.Point(21, 605);
+            this.buttonStart.Location = new System.Drawing.Point(18, 610);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(107, 23);
             this.buttonStart.TabIndex = 5;
@@ -181,7 +193,7 @@
             this.groupBoxDeviceParameters.Location = new System.Drawing.Point(5, 457);
             this.groupBoxDeviceParameters.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.groupBoxDeviceParameters.Name = "groupBoxDeviceParameters";
-            this.groupBoxDeviceParameters.Size = new System.Drawing.Size(259, 147);
+            this.groupBoxDeviceParameters.Size = new System.Drawing.Size(242, 147);
             this.groupBoxDeviceParameters.TabIndex = 4;
             this.groupBoxDeviceParameters.TabStop = false;
             this.groupBoxDeviceParameters.Text = "Device Parameters";
@@ -230,7 +242,7 @@
             // labelTerminalConfig
             // 
             this.labelTerminalConfig.AutoSize = true;
-            this.labelTerminalConfig.Location = new System.Drawing.Point(18, 53);
+            this.labelTerminalConfig.Location = new System.Drawing.Point(18, 55);
             this.labelTerminalConfig.Name = "labelTerminalConfig";
             this.labelTerminalConfig.Size = new System.Drawing.Size(83, 13);
             this.labelTerminalConfig.TabIndex = 15;
@@ -253,7 +265,7 @@
             this.numUpDownExValue.Size = new System.Drawing.Size(120, 20);
             this.numUpDownExValue.TabIndex = 13;
             this.numUpDownExValue.Value = new decimal(new int[] {
-            4,
+            2,
             0,
             0,
             196608});
@@ -261,7 +273,7 @@
             // labelExSource
             // 
             this.labelExSource.AutoSize = true;
-            this.labelExSource.Location = new System.Drawing.Point(18, 79);
+            this.labelExSource.Location = new System.Drawing.Point(18, 82);
             this.labelExSource.Name = "labelExSource";
             this.labelExSource.Size = new System.Drawing.Size(90, 13);
             this.labelExSource.TabIndex = 10;
@@ -270,7 +282,7 @@
             // labelExValue
             // 
             this.labelExValue.AutoSize = true;
-            this.labelExValue.Location = new System.Drawing.Point(18, 105);
+            this.labelExValue.Location = new System.Drawing.Point(18, 109);
             this.labelExValue.Name = "labelExValue";
             this.labelExValue.Size = new System.Drawing.Size(102, 13);
             this.labelExValue.TabIndex = 11;
@@ -287,7 +299,7 @@
             this.groupBoxAcceleroParameters.Location = new System.Drawing.Point(5, 369);
             this.groupBoxAcceleroParameters.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.groupBoxAcceleroParameters.Name = "groupBoxAcceleroParameters";
-            this.groupBoxAcceleroParameters.Size = new System.Drawing.Size(259, 88);
+            this.groupBoxAcceleroParameters.Size = new System.Drawing.Size(242, 88);
             this.groupBoxAcceleroParameters.TabIndex = 3;
             this.groupBoxAcceleroParameters.TabStop = false;
             this.groupBoxAcceleroParameters.Text = "Accelerometer Parameters";
@@ -298,11 +310,6 @@
             this.numUpDownSensitivity.Location = new System.Drawing.Point(128, 25);
             this.numUpDownSensitivity.Maximum = new decimal(new int[] {
             1000,
-            0,
-            0,
-            0});
-            this.numUpDownSensitivity.Minimum = new decimal(new int[] {
-            50,
             0,
             0,
             0});
@@ -360,7 +367,7 @@
             this.groupBoxTriggerParameters.Location = new System.Drawing.Point(5, 222);
             this.groupBoxTriggerParameters.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.groupBoxTriggerParameters.Name = "groupBoxTriggerParameters";
-            this.groupBoxTriggerParameters.Size = new System.Drawing.Size(259, 147);
+            this.groupBoxTriggerParameters.Size = new System.Drawing.Size(242, 147);
             this.groupBoxTriggerParameters.TabIndex = 2;
             this.groupBoxTriggerParameters.TabStop = false;
             this.groupBoxTriggerParameters.Text = "Trigger Parameters";
@@ -468,7 +475,7 @@
             this.groupBoxTimingParameters.Location = new System.Drawing.Point(5, 132);
             this.groupBoxTimingParameters.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.groupBoxTimingParameters.Name = "groupBoxTimingParameters";
-            this.groupBoxTimingParameters.Size = new System.Drawing.Size(259, 90);
+            this.groupBoxTimingParameters.Size = new System.Drawing.Size(242, 90);
             this.groupBoxTimingParameters.TabIndex = 1;
             this.groupBoxTimingParameters.TabStop = false;
             this.groupBoxTimingParameters.Text = "Timing Parameters";
@@ -489,6 +496,7 @@
             0,
             0,
             0});
+            this.numUpDownSamples.ValueChanged += new System.EventHandler(this.SamplesValueChanged);
             // 
             // numUpDownRate
             // 
@@ -540,7 +548,7 @@
             this.groupBoxChannelParameters.Location = new System.Drawing.Point(5, 5);
             this.groupBoxChannelParameters.Margin = new System.Windows.Forms.Padding(15);
             this.groupBoxChannelParameters.Name = "groupBoxChannelParameters";
-            this.groupBoxChannelParameters.Size = new System.Drawing.Size(259, 127);
+            this.groupBoxChannelParameters.Size = new System.Drawing.Size(242, 127);
             this.groupBoxChannelParameters.TabIndex = 0;
             this.groupBoxChannelParameters.TabStop = false;
             this.groupBoxChannelParameters.Text = "Channel Parameters";
@@ -632,8 +640,101 @@
             this.formsPlot1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.formsPlot1.Location = new System.Drawing.Point(278, 3);
             this.formsPlot1.Name = "formsPlot1";
-            this.formsPlot1.Size = new System.Drawing.Size(687, 625);
+            this.formsPlot1.Size = new System.Drawing.Size(687, 600);
             this.formsPlot1.TabIndex = 3;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.YaxisLock);
+            this.panel2.Controls.Add(this.numYMinimum);
+            this.panel2.Controls.Add(this.YMinimumLabel);
+            this.panel2.Controls.Add(this.numYMaximum);
+            this.panel2.Controls.Add(this.YMaximumLabel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(278, 609);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(687, 59);
+            this.panel2.TabIndex = 4;
+            // 
+            // numYMinimum
+            // 
+            this.numYMinimum.DecimalPlaces = 2;
+            this.numYMinimum.Location = new System.Drawing.Point(78, 33);
+            this.numYMinimum.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numYMinimum.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.numYMinimum.Name = "numYMinimum";
+            this.numYMinimum.Size = new System.Drawing.Size(120, 20);
+            this.numYMinimum.TabIndex = 17;
+            this.numYMinimum.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            -2147483648});
+            this.numYMinimum.ValueChanged += new System.EventHandler(this.numYMinimum_ValueChanged);
+            // 
+            // YMinimumLabel
+            // 
+            this.YMinimumLabel.AutoSize = true;
+            this.YMinimumLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.YMinimumLabel.Location = new System.Drawing.Point(7, 35);
+            this.YMinimumLabel.Name = "YMinimumLabel";
+            this.YMinimumLabel.Size = new System.Drawing.Size(61, 13);
+            this.YMinimumLabel.TabIndex = 14;
+            this.YMinimumLabel.Text = "Y Minimum:";
+            // 
+            // numYMaximum
+            // 
+            this.numYMaximum.DecimalPlaces = 2;
+            this.numYMaximum.Location = new System.Drawing.Point(78, 7);
+            this.numYMaximum.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numYMaximum.Name = "numYMaximum";
+            this.numYMaximum.Size = new System.Drawing.Size(120, 20);
+            this.numYMaximum.TabIndex = 17;
+            this.numYMaximum.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numYMaximum.ValueChanged += new System.EventHandler(this.numYMaximum_ValueChanged);
+            // 
+            // YMaximumLabel
+            // 
+            this.YMaximumLabel.AutoSize = true;
+            this.YMaximumLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.YMaximumLabel.Location = new System.Drawing.Point(7, 9);
+            this.YMaximumLabel.Name = "YMaximumLabel";
+            this.YMaximumLabel.Size = new System.Drawing.Size(64, 13);
+            this.YMaximumLabel.TabIndex = 14;
+            this.YMaximumLabel.Text = "Y Maximum:";
+            // 
+            // timerRender
+            // 
+            this.timerRender.Interval = 5;
+            this.timerRender.Tick += new System.EventHandler(this.timerRender_Tick);
+            // 
+            // YaxisLock
+            // 
+            this.YaxisLock.AutoSize = true;
+            this.YaxisLock.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.YaxisLock.Location = new System.Drawing.Point(221, 9);
+            this.YaxisLock.Name = "YaxisLock";
+            this.YaxisLock.Size = new System.Drawing.Size(81, 17);
+            this.YaxisLock.TabIndex = 18;
+            this.YaxisLock.Text = "Lock Y axis";
+            this.YaxisLock.UseVisualStyleBackColor = true;
+            this.YaxisLock.CheckedChanged += new System.EventHandler(this.YaxisLock_CheckedChanged);
             // 
             // Waveform_form
             // 
@@ -665,6 +766,10 @@
             this.groupBoxChannelParameters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownMaximumValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownMinimumValue)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numYMinimum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numYMaximum)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -712,5 +817,12 @@
         private System.Windows.Forms.ComboBox comboBoxInputCoupling;
         private System.Windows.Forms.Button btnSave;
         private ScottPlot.FormsPlot formsPlot1;
+        private System.Windows.Forms.Timer timerRender;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.NumericUpDown numYMinimum;
+        private System.Windows.Forms.Label YMinimumLabel;
+        private System.Windows.Forms.NumericUpDown numYMaximum;
+        private System.Windows.Forms.Label YMaximumLabel;
+        private System.Windows.Forms.CheckBox YaxisLock;
     }
 }

@@ -11,7 +11,6 @@ using FontAwesome.Sharp;
 using System.Diagnostics;
 
 using System.Threading;
-using System.Diagnostics;
 using ScottPlot;
 
 namespace phd_project_net_framework.Chid_form
@@ -47,13 +46,14 @@ namespace phd_project_net_framework.Chid_form
             var sig =formsPlot1.Plot.AddSignal(liveData);
             sig.FillAboveAndBelow(Color.Green, Color.Transparent,Color.Transparent, Color.Red,alpha:1);
             sig.Color = Color.White;
+            //formsPlot1.Configuration.LockHorizontalAxis
             formsPlot1.Plot.AxisAutoX(margin: 0);
             formsPlot1.Plot.SetAxisLimits(yMin: -1, yMax: 2.5);
 
             //plot a red vertical line and save it so we can move it later
 
             //formsPlot1.Plot.Style(figureBackground: Color.Transparent, dataBackground: Color.Transparent);
-            formsPlot1.Plot.Title("Plot Demo", true, Color.White, 20);
+            formsPlot1.Plot.Title("Accelerometer Test Run", true, Color.White, 20);
             formsPlot1.Plot.Style(ScottPlot.Style.Gray1);
             formsPlot1.Plot.Palette = ScottPlot.Drawing.Palette.Nord;
             formsPlot1.Plot.YAxis.TickMarkColor(Color.White);
@@ -145,6 +145,7 @@ namespace phd_project_net_framework.Chid_form
         private void buttonRoundedCorners1_Click(object sender, EventArgs e)
         { 
         }
+
 
         private void buttonRoundedCorners2_Click(object sender, EventArgs e)
         {

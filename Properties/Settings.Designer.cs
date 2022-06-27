@@ -128,7 +128,7 @@ namespace phd_project_net_framework.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.64")]
         public double Sensitivity {
             get {
                 return ((double)(this["Sensitivity"]));
@@ -188,7 +188,7 @@ namespace phd_project_net_framework.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.004")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.002")]
         public double excitationValue {
             get {
                 return ((double)(this["excitationValue"]));
