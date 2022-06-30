@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using System.Diagnostics;
+using phd_project_net_framework.Costum_Class;
 
 using System.Threading;
 using ScottPlot;
@@ -17,7 +18,6 @@ namespace phd_project_net_framework.Chid_form
 {
     public partial class Monitoring_Form : Form
     {
-        private int Job=1;
         private Boolean PlotActive = false;
         private IconButton leftBorderBtn;
         private Panel currentChannel;
@@ -71,9 +71,8 @@ namespace phd_project_net_framework.Chid_form
 
         private void ActiveChannel(object senderBtn, Color color)
         {
-           
             if (senderBtn != null)
-            {
+            { 
                 if (currentChannel != (Panel)senderBtn)
                 {
                     DisableForm();
@@ -92,12 +91,12 @@ namespace phd_project_net_framework.Chid_form
                     leftBorderBtn.Visible = true;
                     leftBorderBtn.BringToFront();
                     PlotActive = true;
-                    if (timerRender.Enabled==false)
+                    if (timerRender.Enabled == false)
                     {
                         timerRender.Enabled = true;
                         timerUpdateData.Enabled = true;
                     }
-                    
+
                 }
                 else
                 {
@@ -114,7 +113,7 @@ namespace phd_project_net_framework.Chid_form
                         PlotActive = true;
                         timerRender.Enabled = true;
                         timerUpdateData.Enabled = true;
-                    }  
+                    }
                 }
             }
         }
@@ -127,6 +126,7 @@ namespace phd_project_net_framework.Chid_form
         private void Plotting(object sender, EventArgs e)
         {
             ActiveChannel(sender, Color.RoyalBlue);
+            MessageBox.Show("the button is clicked");
         }
 
         private void timerUpdateData_Tick(object sender, EventArgs e)
@@ -142,18 +142,25 @@ namespace phd_project_net_framework.Chid_form
             formsPlot1.Refresh();
         }
 
-        private void buttonRoundedCorners1_Click(object sender, EventArgs e)
-        { 
+        private void Monitoring_Form_Load(object sender, EventArgs e)
+        {
+            List<Job> all_jobs = DbJob.GetAllJob();
+            if (all_jobs.Count > 0)
+            {
+                foreach (Job job in all_jobs)
+                {
+                    Custom_Controls.Job_Monitoring_Card job_card = new Custom_Controls.Job_Monitoring_Card();
+                    job_card.Card_Name = $"{job.Name}";
+                    job_card.Dock = DockStyle.Top;
+                    splitContainer2.Panel1.Controls.Add(job_card);
+                    job_card.Click += Job_card_Click;
+                }
+            }
         }
 
-
-        private void buttonRoundedCorners2_Click(object sender, EventArgs e)
+        private void Job_card_Click(object sender, EventArgs e)
         {
-            Custom_Controls.Job_Monitoring_Card job3_card = new Custom_Controls.Job_Monitoring_Card();
-            job3_card.Parent = splitContainer2.Panel1;
-            job3_card.Card_Name = $"JOB {Job}";
-            job3_card.Click += new EventHandler(Plotting);
-            Job++;
+            MessageBox.Show("the button is clicked");
         }
     }
 }

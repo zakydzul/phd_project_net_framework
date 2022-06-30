@@ -169,7 +169,6 @@
             this.buttonRoundedCorners2.Text = "Power";
             this.buttonRoundedCorners2.TextColor = System.Drawing.Color.White;
             this.buttonRoundedCorners2.UseVisualStyleBackColor = false;
-            this.buttonRoundedCorners2.Click += new System.EventHandler(this.buttonRoundedCorners2_Click);
             // 
             // buttonRoundedCorners1
             // 
@@ -190,7 +189,6 @@
             this.buttonRoundedCorners1.Text = "Vibration";
             this.buttonRoundedCorners1.TextColor = System.Drawing.Color.White;
             this.buttonRoundedCorners1.UseVisualStyleBackColor = false;
-            this.buttonRoundedCorners1.Click += new System.EventHandler(this.buttonRoundedCorners1_Click);
             // 
             // Monitoring_Form
             // 
@@ -202,6 +200,7 @@
             this.MinimumSize = new System.Drawing.Size(980, 690);
             this.Name = "Monitoring_Form";
             this.Text = "Monitoring_Form";
+            this.Load += new System.EventHandler(this.Monitoring_Form_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

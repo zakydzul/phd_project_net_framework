@@ -64,7 +64,7 @@
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.IconChar = FontAwesome.Sharp.IconChar.Tools;
+            this.btnSettings.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
             this.btnSettings.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSettings.IconSize = 32;
@@ -107,7 +107,7 @@
             this.btnJob.FlatAppearance.BorderSize = 0;
             this.btnJob.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJob.ForeColor = System.Drawing.Color.White;
-            this.btnJob.IconChar = FontAwesome.Sharp.IconChar.Folder;
+            this.btnJob.IconChar = FontAwesome.Sharp.IconChar.FolderBlank;
             this.btnJob.IconColor = System.Drawing.Color.WhiteSmoke;
             this.btnJob.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnJob.IconSize = 32;
@@ -149,7 +149,7 @@
             this.btnWaveform.FlatAppearance.BorderSize = 0;
             this.btnWaveform.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWaveform.ForeColor = System.Drawing.Color.White;
-            this.btnWaveform.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
+            this.btnWaveform.IconChar = FontAwesome.Sharp.IconChar.BarChart;
             this.btnWaveform.IconColor = System.Drawing.Color.White;
             this.btnWaveform.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnWaveform.IconSize = 32;

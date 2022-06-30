@@ -12,10 +12,14 @@ using System.ComponentModel;
 namespace phd_project_net_framework.Custom_Controls
 {
     //create card panel class
+    
     public class Job_Monitoring_Card : Panel
     {
         // fields
+        public int Job_ID { get; set; }
+        public Button Delete_Btn;
         
+
         private Color _backColor = Color.FromArgb(58, 65, 73);
         private Color _foreColor = Color.Black;
         private Label card_label = new Label();
@@ -48,33 +52,23 @@ namespace phd_project_net_framework.Custom_Controls
             topHeader.BackColor = Color.MidnightBlue;
             topHeader.Dock = DockStyle.Top;
             
-            topHeader.Controls.Add(card_label);
-            card_label.ForeColor = Color.White;           
-            card_label.Location = new Point(77, 9);
+            card_label.ForeColor = Color.White;
+            card_label.AutoSize = false;
+            card_label.Dock = DockStyle.Fill;
+            card_label.TextAlign = ContentAlignment.MiddleCenter;
             card_label.Font = new Font(DefaultFont, FontStyle.Bold);
-            card_label.Anchor = AnchorStyles.None;
+            topHeader.Controls.Add(card_label);
+
+            Panel content = new Panel();
+            this.Controls.Add(content);
+            content.Dock = DockStyle.Fill;
 
             Panel bottomPadding = new Panel();
             this.Controls.Add(bottomPadding);
             bottomPadding.Size = new Size(this.Width, 10);
             bottomPadding.BackColor = Color.FromArgb(49, 54, 58);
             bottomPadding.Dock = DockStyle.Bottom;
-
         }
-
-        //OnClick HandleEvent
-        protected override void OnClick(EventArgs e)
-        {
-
-            AccessibilityNotifyClients(AccessibleEvents.StateChange, -1);
-            AccessibilityNotifyClients(AccessibleEvents.NameChange, -1);
-            base.OnClick(e);
-        }
-
-
-
-    }
-
-
-    
+        
+    }  
 }
